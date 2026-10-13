@@ -23,6 +23,17 @@ void Calculations(int *group, int *variant, double *course)
     *course = trig;
 }
 
+void print_array(const char *title, const double *arr, int size)
+{
+    printf("%s: [", title);
+    for (int i = 0; i < size; i++) {
+        printf("%.17g", arr[i]);
+        if (i < size - 1) printf(" ");
+    }
+    printf("]\n");
+}
+
+
 int main(void)
 {   
     /* Для виведення українських літер */
@@ -40,4 +51,19 @@ int main(void)
 
     printf("Нові значення: група = %d, варіант = %d, курс = %.6f\n\n",
            group, variant, course);
+    
+               /* Завдання 3: масив зі скороченим оголошенням, зміна його елементів */
+    double arr[] = { 1, 2, group, variant, course };
+    int size = sizeof(arr) / sizeof(arr[0]);
+ 
+    print_array("Масив до змін", arr, size);
+ 
+    arr[0] = GROUP;
+    arr[1] = COURSE;
+ 
+    for (int i = 0; i < size; i++)
+        arr[i] += VARIANT;
+ 
+    print_array("Масив після змін", arr, size);
+    return 0;
 }
